@@ -208,6 +208,11 @@ public class Packer
 					if (match.Success)
 					{
 						ui_head_t.ui_magic = uint.Parse(match.Groups[1].Value);
+						//This allows reading CSV files with image ID and files with image magic (previous version)
+						if (ui_head_t.ui_magic != 0)
+						{
+							ui_head_t.ui_magic = (ui_head_t.ui_magic & 0xFFFF) | UI_BMP_MAGIC_BASE;
+						}
 						ui_head_t.offset = int.Parse(match.Groups[2].Value);
 						ui_head_t.x_pos = ushort.Parse(match.Groups[3].Value);
 						ui_head_t.y_pos = ushort.Parse(match.Groups[4].Value);
@@ -288,6 +293,7 @@ class MainClass
         // Test if input arguments were supplied:
         if (args.Length < 2)
         {
+            System.Console.WriteLine("CBD UI file generator v0.3");
             System.Console.WriteLine("Please enter input folder and binary UI package output.");
             System.Console.WriteLine("Usage: UIgenerator <input folder> <output UI binary> ");
             return 1;
