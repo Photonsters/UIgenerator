@@ -197,7 +197,7 @@ public class Packer
 			}
 			string line;
 			int line_count = 1;
-			Regex parts = new Regex(@"^\,(\d+)\,(\d+)\,(\d+)\,(\d+)\,(\d+)\,(\d+)\,(\d+)");
+			Regex parts = new Regex(@"^(\d+)\,(\d+)\,(\d+)\,(\d+)\,(\d+)\,(\d+)\,(\d+)");
 			line = streamReader.ReadLine(); //Discard first line
 			for (int i = 0; i < MaxImages; i++)
 			{
@@ -293,7 +293,7 @@ class MainClass
         // Test if input arguments were supplied:
         if (args.Length < 2)
         {
-            System.Console.WriteLine("CBD UI file generator v0.3");
+            System.Console.WriteLine("CBD UI file generator v0.4");
             System.Console.WriteLine("Please enter input folder and binary UI package output.");
             System.Console.WriteLine("Usage: UIgenerator <input folder> <output UI binary> ");
             return 1;
